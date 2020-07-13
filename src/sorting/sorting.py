@@ -1,11 +1,25 @@
 # TO-DO: complete the helper function below to merge 2 sorted arrays
-def merge(arrA, arrB):
-    elements = len(arrA) + len(arrB)
+def merge(left, right):
+    elements = len(left) + len(right)
     merged_arr = [0] * elements
 
     # Your code here
-    merged_arr = arrA + arrB
-    merged_arr.sort()
+    left_index, right_index = 0, 0
+    while left_index < len(left) and right_index < len(right):
+
+        # Sort each one and place into the result
+        if left[left_index] <= right[right_index]:
+            merged_arr[left_index+right_index] = left[left_index]
+            left_index += 1
+        else:
+            merged_arr[left_index + right_index] = right[right_index]
+            right_index += 1
+
+    for left_index in range(left_index, len(left)):
+        merged_arr[left_index + right_index] = left[left_index]
+
+    for right_index in range(right_index, len(right)):
+        merged_arr[left_index + right_index] = right[right_index]
 
     return merged_arr
 
